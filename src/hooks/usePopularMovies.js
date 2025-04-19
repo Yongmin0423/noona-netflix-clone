@@ -1,9 +1,14 @@
 import { useQuery } from "@tanstack/react-query";
+import api from "../utils/api";
 
-useQuery;
+const fetchPopularMovies = () => {
+  return api.get("/movie/popular?language=eko-KR&page=1' ");
+};
 
 export const usePopularMoviesQuery = () => {
   return useQuery({
-    queryKey: [],
+    queryKey: ["movie-popular"],
+    queryFn: fetchPopularMovies,
+    select: (result) => result.data,
   });
 };
