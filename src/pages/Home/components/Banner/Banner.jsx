@@ -5,16 +5,13 @@ export default function Banner() {
   const BASE_IMG_PATH = "https://image.tmdb.org/t/p/original/";
   const { data, isLoading, isError, error } = usePopularMoviesQuery();
   console.log("ddd", data);
-  if (!data) return null;
 
   if (isLoading) {
-    <h1>Loading...</h1>;
-    return null;
+    return <h1>Loading...</h1>;
   }
 
   if (isError) {
-    <Alert variant="danger">{error.message}</Alert>;
-    return null;
+    return <Alert variant="danger">{error.message}</Alert>;
   }
   return (
     <div
