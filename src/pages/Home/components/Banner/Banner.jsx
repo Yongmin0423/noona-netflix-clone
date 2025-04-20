@@ -15,7 +15,7 @@ export default function Banner() {
   }
   return (
     <div
-      className="relative h-[70vh] bg-cover bg-center bg-no-repeat before:content-[''] before:absolute before:left-0 before:top-0 before:h-[70vh] before:w-full before:bg-gradient-to-t before:from-black before:to-transparent"
+      className="relative h-[50vh] bg-cover bg-center bg-no-repeat before:content-[''] before:absolute before:left-0 before:top-0 before:h-[70vh] before:w-full before:bg-gradient-to-t before:from-black before:to-transparent"
       style={{
         backgroundImage: `url(${BASE_IMG_PATH}${data?.results[0].backdrop_path})`,
       }}
