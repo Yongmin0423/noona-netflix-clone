@@ -18,12 +18,12 @@ export default function Banner() {
   }
   return (
     <div
-      className="relative h-[60vh] bg-center bg-no-repeat before:content-[''] before:absolute before:left-0 before:top-0 before:h-[60vh] before:w-full before:bg-gradient-to-t before:from-black before:to-transparent"
+      className="relative h-[70vh] bg-cover bg-center bg-no-repeat before:content-[''] before:absolute before:left-0 before:top-0 before:h-[70vh] before:w-full before:bg-gradient-to-t before:from-black before:to-transparent"
       style={{
         backgroundImage: `url(${BASE_IMG_PATH}${data?.results[0].backdrop_path})`,
       }}
     >
-      <div className="text-white h-[50%] w-[30vw] flex flex-col justify-center pl-20">
+      <div className="text-white h-full w-[30vw] flex flex-col justify-center ml-[10%] z-5">
         <p className="text-5xl font-bold">{data?.results[0].title}</p>
         <p className="font-semibold">{data?.results[0].overview}</p>
       </div>
