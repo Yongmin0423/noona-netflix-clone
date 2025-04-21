@@ -1,9 +1,19 @@
 import { Badge } from "react-bootstrap";
 import { useState } from "react";
+import { useMovieGenreQuery } from "../../../../hooks/useMovieGenre";
 
 const MovieCard = ({ movie }) => {
   const BASE_IMG_PATH = "https://image.tmdb.org/t/p/original/";
   const [isHovered, setIsHovered] = useState(false);
+  const { data: genreData } = useMovieGenreQuery();
+
+  const showGenre = (genreIdList) => {
+    if (!genreData) return [];
+    return genreIdList.map((id) => {
+      const genreObj = genreData.find((genre) => genre.id === id);
+      return genreObj?.name || "Unknown";
+    });
+  };
 
   return (
     <div
@@ -26,7 +36,7 @@ const MovieCard = ({ movie }) => {
         >
           <p className="font-bold text-lg mb-2">{movie.title}</p>
           <div className="flex gap-1 mb-3">
-            {movie.genre_ids.map((id, index) => (
+            {showGenre(movie?.genre_ids).map((id, index) => (
               <Badge key={index} bg="danger">
                 {id}
               </Badge>

@@ -26,7 +26,7 @@ const UpcomingMovieSlide = () => {
   if (isError) return <Alert variant="danger">{error?.message}</Alert>;
 
   return (
-    <div>
+    <>
       <h1 className="text-white">Upcoming Movies</h1>
       <Carousel
         className="h-[30vh]"
@@ -42,7 +42,7 @@ const UpcomingMovieSlide = () => {
         ))}
       </Carousel>
       ;
-    </div>
+    </>
   );
 };
 
