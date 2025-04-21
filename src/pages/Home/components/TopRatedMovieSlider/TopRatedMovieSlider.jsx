@@ -1,7 +1,7 @@
-import { usePopularMoviesQuery } from "../../../../hooks/usePopularMovies";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import MovieCard from "../MovieCard/MovieCard";
+import { useTopRatedMoviesQuery } from "../../../../hooks/useTopRatedMovies";
 
 const responsive = {
   desktop: {
@@ -18,8 +18,8 @@ const responsive = {
   },
 };
 
-const PopularMovieSlide = () => {
-  const { data, isLoading, isError, error } = usePopularMoviesQuery();
+const TopRatedMovieSlide = () => {
+  const { data, isLoading, isError, error } = useTopRatedMoviesQuery();
 
   if (isLoading) return <h1>Loading...</h1>;
 
@@ -27,7 +27,7 @@ const PopularMovieSlide = () => {
 
   return (
     <div>
-      <h1 className="text-white">Popular Movies</h1>
+      <h1 className="text-white">Top Rated Movies</h1>
       <Carousel
         className="h-[30vh]"
         swipeable={false}
@@ -46,4 +46,4 @@ const PopularMovieSlide = () => {
   );
 };
 
-export default PopularMovieSlide;
+export default TopRatedMovieSlide;
