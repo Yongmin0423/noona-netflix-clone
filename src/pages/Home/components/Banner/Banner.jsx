@@ -20,9 +20,21 @@ export default function Banner() {
         backgroundImage: `url(${BASE_IMG_PATH}${data?.results[0].backdrop_path})`,
       }}
     >
-      <div className="text-white h-full w-[30vw] flex flex-col justify-center ml-[10%] z-5">
-        <p className="text-5xl font-bold">{data?.results[0].title}</p>
-        <p className="font-semibold">{data?.results[0].overview}</p>
+      <div className="text-white h-full w-[30%] flex flex-col justify-center ml-[10%] z-5 overflow-hidden">
+        <p className="text-4xl sm:text-5xl font-bold">
+          {data?.results[0].title}
+        </p>
+        <>
+          {/* sm 이상 (태블릿) */}
+          <p className="hidden sm:block md:hidden font-semibold">
+            {data?.results[0].overview.slice(0, 100)}...
+          </p>
+
+          {/* md 이상 (데스크탑 이상) */}
+          <p className="hidden md:block font-semibold">
+            {data?.results[0].overview}
+          </p>
+        </>
       </div>
     </div>
   );
