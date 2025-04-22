@@ -20,7 +20,6 @@ const responsive = {
 
 const UpcomingMovieSlide = () => {
   const { data, isLoading, isError, error } = useUpcomingMoviesQuery();
-  console.log("upcoming", data);
   if (isLoading) return <h1>Loading...</h1>;
 
   if (isError) return <Alert variant="danger">{error?.message}</Alert>;

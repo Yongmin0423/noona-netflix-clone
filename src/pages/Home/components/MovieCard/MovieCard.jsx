@@ -35,7 +35,7 @@ const MovieCard = ({ movie }) => {
           }}
         >
           <p className="font-bold text-lg mb-2">{movie.title}</p>
-          <div className="flex gap-1 mb-3">
+          <div className="flex flex-wrap justify-center gap-1 mb-3">
             {showGenre(movie?.genre_ids).map((id, index) => (
               <Badge key={index} bg="danger">
                 {id}
@@ -45,7 +45,7 @@ const MovieCard = ({ movie }) => {
           <div className="flex flex-col items-center">
             <div className="mb-1">평점: {movie.vote_average}</div>
             <div className="mb-1">인기도: {movie.popularity}</div>
-            <div>{movie.adult ? "18세 이상" : "전체 관람가"}</div>
+            <div>{movie.adult ? "18세 이상" : ""}</div>
           </div>
         </div>
       </div>

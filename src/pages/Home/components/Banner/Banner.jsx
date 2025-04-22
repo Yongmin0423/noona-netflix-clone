@@ -4,7 +4,6 @@ import Alert from "react-bootstrap/Alert";
 export default function Banner() {
   const BASE_IMG_PATH = "https://image.tmdb.org/t/p/original/";
   const { data, isLoading, isError, error } = usePopularMoviesQuery();
-  console.log("ddd", data);
 
   if (isLoading) {
     return <h1>Loading...</h1>;
