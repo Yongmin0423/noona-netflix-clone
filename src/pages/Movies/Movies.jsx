@@ -1,6 +1,6 @@
 import { useSearchParams } from "react-router-dom";
 import { useSearchMovieQuery } from "../../hooks/useSearchMovie";
-import { Col, Container, Row, Spinner } from "react-bootstrap";
+import { Alert, Col, Container, Row, Spinner } from "react-bootstrap";
 import MovieCard from "../Home/components/MovieCard/MovieCard";
 import ReactPaginate from "react-paginate";
 import { useEffect, useState } from "react";
@@ -62,7 +62,7 @@ export default function Movies() {
             onPageChange={handlePageClick}
             pageRangeDisplayed={3}
             marginPagesDisplayed={2}
-            pageCount={data.total_pages}
+            pageCount={data?.total_pages > 500 ? 500 : data?.total_pages}
             previousLabel="< previous"
             pageClassName="page-item"
             pageLinkClassName="page-link"
