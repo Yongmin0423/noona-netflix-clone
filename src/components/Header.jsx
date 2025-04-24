@@ -18,7 +18,7 @@ export default function Header() {
   return (
     <Navbar expand="lg" className="bg-body-dark px-2">
       <Container fluid>
-        <Navbar.Brand href="#">
+        <Navbar.Brand href="/">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="100"

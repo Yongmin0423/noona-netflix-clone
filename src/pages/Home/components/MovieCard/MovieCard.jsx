@@ -1,11 +1,13 @@
 import { Badge } from "react-bootstrap";
 import { useState } from "react";
 import { useMovieGenreQuery } from "../../../../hooks/useMovieGenre";
+import { useNavigate } from "react-router-dom";
 
 const MovieCard = ({ movie }) => {
   const BASE_IMG_PATH = "https://image.tmdb.org/t/p/original/";
   const [isHovered, setIsHovered] = useState(false);
   const { data: genreData } = useMovieGenreQuery();
+  const navigate = useNavigate();
 
   const showGenre = (genreIdList) => {
     if (!genreData) return [];
@@ -22,7 +24,8 @@ const MovieCard = ({ movie }) => {
       onMouseLeave={() => setIsHovered(false)}
     >
       <div
-        className="w-full h-full bg-center bg-cover bg-no-repeat"
+        onClick={() => navigate(`/movies/${movie.id}`)}
+        className="w-full h-full bg-center bg-cover bg-no-repeat cursor-pointer"
         style={{
           backgroundImage: `url(${BASE_IMG_PATH}${movie.poster_path}) `,
         }}
