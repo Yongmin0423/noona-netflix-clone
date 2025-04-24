@@ -1,14 +1,26 @@
 import { useParams } from "react-router-dom";
 import { useMovieDetail } from "../../hooks/useMovieDetail";
-import { Alert, Badge, Col, Container, Row, Spinner } from "react-bootstrap";
+import {
+  Alert,
+  Badge,
+  Col,
+  Container,
+  Row,
+  Spinner,
+  Tab,
+  Tabs,
+} from "react-bootstrap";
 import { BASE_IMG_PATH } from "../../common/constants";
 import { FaVoteYea } from "react-icons/fa";
 import { IoIosPeople } from "react-icons/io";
+import { TbRating18Plus } from "react-icons/tb";
+import { useMovieReviews } from "../../hooks/useMovieReviews";
 
 export default function MovieDetail() {
   const { id } = useParams();
   const { data, isLoading, error, isError } = useMovieDetail(id);
-  console.log(data);
+  const { data: reviewData } = useMovieReviews(id);
+  console.log("review Data", reviewData);
 
   if (isLoading) {
     return (
@@ -43,11 +55,24 @@ export default function MovieDetail() {
             <h1>{data.title}</h1>
           </div>
           <p>{data.overview}</p>
-          <div className="flex items-center my-5 gap-2">
-            <FaVoteYea className="text-4xl bg-amber-400 p-2 rounded text-black" />
-            <p className="flex items-center text-4xl mb-1">
-              {data.vote_average.toFixed(1)}
-            </p>
+          <div className="flex items-center gap-10">
+            <div className="flex items-center my-5 gap-2">
+              <FaVoteYea className="text-5xl bg-amber-400 p-2 rounded text-black" />
+              <p className="flex items-center text-4xl mb-1">
+                {data.vote_average.toFixed(1)}
+              </p>
+            </div>
+            <div className="flex items-center my-5 gap-2">
+              <IoIosPeople className="text-5xl bg-amber-400 p-2 rounded text-black" />
+              <p className="flex items-center text-4xl mb-1">
+                {data.vote_count}
+              </p>
+            </div>
+            <div className="flex items-center my-5 gap-2">
+              {data.adult && (
+                <TbRating18Plus className="text-5xl bg-red-500 p-2 rounded text-black" />
+              )}
+            </div>
           </div>
           <div className="flex flex-col gap-2">
             <div className="text-2xl flex gap-2 items-center">
@@ -67,6 +92,23 @@ export default function MovieDetail() {
               <span>{data.runtime} min</span>
             </div>
           </div>
+          {reviewData?.results.length === 0 ? null : (
+            <div>
+              <h2 className="m-2">Reviews</h2>
+              <Tabs
+                defaultActiveKey="profile"
+                id="fill-tab-example"
+                className="mb-3"
+                fill
+              >
+                {reviewData?.results.map((review) => (
+                  <Tab className="p" eventKey={review.id} title={review.author}>
+                    {review.content}
+                  </Tab>
+                ))}
+              </Tabs>
+            </div>
+          )}
         </Col>
       </Row>
     </Container>
