@@ -46,8 +46,8 @@ const MovieCard = ({ movie }) => {
             ))}
           </div>
           <div className="flex flex-col items-center">
-            <div className="mb-1">평점: {movie.vote_average}</div>
-            <div className="mb-1">인기도: {movie.popularity}</div>
+            <div className="mb-1">평점: {movie.vote_average.toFixed(2)}</div>
+            <div className="mb-1">인기도: {movie.popularity.toFixed(2)}</div>
             <div>{movie.adult ? "18세 이상" : ""}</div>
           </div>
         </div>
