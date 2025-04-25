@@ -33,11 +33,7 @@ export default function MovieDetail() {
   const toggleModal = () => setShowModal((prev) => !prev);
 
   if (isLoading) {
-    return (
-      <div className="w-screen h-screen flex justify-center items-center spinner-area">
-        <LoadingSpinner />
-      </div>
-    );
+    return <LoadingSpinner />;
   }
   if (isError) {
     return <Alert variant="danger">{error.message}</Alert>;
