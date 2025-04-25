@@ -21,6 +21,7 @@ import { AnimatePresence, motion } from "motion/react";
 import Example from "./components/Video";
 import { useState } from "react";
 import { useTrailer } from "../../hooks/useTrailer";
+import LoadingSpinner from "../../common/LoadingSpinner";
 
 export default function MovieDetail() {
   const { id } = useParams();
@@ -34,11 +35,7 @@ export default function MovieDetail() {
   if (isLoading) {
     return (
       <div className="w-screen h-screen flex justify-center items-center spinner-area">
-        <Spinner
-          animation="border"
-          variant="danger"
-          style={{ width: "5rem", height: "5rem" }}
-        />
+        <LoadingSpinner />
       </div>
     );
   }
