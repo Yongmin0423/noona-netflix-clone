@@ -22,6 +22,7 @@ import Example from "./components/Video";
 import { useState } from "react";
 import { useTrailer } from "../../hooks/useTrailer";
 import LoadingSpinner from "../../common/LoadingSpinner";
+import ReviewSection from "./components/Review";
 
 export default function MovieDetail() {
   const { id } = useParams();
@@ -111,34 +112,15 @@ export default function MovieDetail() {
             <div>
               <RelatedMovie recommendData={recommendData} />
             </div>
-            {reviewData?.results.length === 0 ? null : (
-              <div>
-                <h2 className="m-2">Reviews</h2>
-                <Tabs
-                  defaultActiveKey="profile"
-                  id="fill-tab-example"
-                  className="mb-3"
-                  fill
-                >
-                  {reviewData?.results.map((review) => (
-                    <Tab
-                      className="p"
-                      eventKey={review.id}
-                      title={review.author}
-                    >
-                      {review.content}
-                    </Tab>
-                  ))}
-                </Tabs>
-              </div>
-            )}
+
+            {/* Replace the old reviews section with the new component */}
+            <ReviewSection reviewData={reviewData} />
           </Col>
         </Row>
       </Container>
       <AnimatePresence>
         {showModal && (
           <>
-            {/* 배경 오버레이 */}
             <motion.div
               className="fixed inset-0 bg-black/70 z-40"
               initial={{ opacity: 0 }}
@@ -147,13 +129,12 @@ export default function MovieDetail() {
               onClick={toggleModal}
             />
 
-            {/* 모달 창 */}
             <motion.div
               className="fixed top-1/2 left-1/2 z-50 transform -translate-x-1/2 -translate-y-1/2 bg-black rounded-lg shadow-lg p-4"
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0.9 }}
-              onClick={(e) => e.stopPropagation()} // 내부 클릭 시 닫기 방지
+              onClick={(e) => e.stopPropagation()}
             >
               {trailerData.results.length === 0 ? (
                 <p className="text-2x1 text-white">
